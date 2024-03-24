@@ -9,7 +9,7 @@ Description:
 The project will result in a web application that lists out the nearby hotels in a certain radius around the user, preferably through a map. It will allow features such as reviewing and rating hotels, which can be done anonymously without a login feature, and the ability to save personal preferences given the user has logged into their account. Upon clicking on a hotel location, it would expand to present more information on the hotel, such as its general description amenities, its average cost per room, a link redirecting to the hotel’s official site, and other users’ reviews.\
 We would use Flask, Python, and possibly a database for logins. We would also make use of existing APIs such as Hotel Prices, Hotel Content, and Google Places API to find nearby hotels and their details
 
-Project requirements:
+Project requirements (Only for initial setup):
 
 - 1) pip is installed
     - note: if you are unsure if you have pip installed, type "pip --version" in the terminal
@@ -22,7 +22,7 @@ Project requirements:
 
 ** Please do not push the venv (virtual environment) **
 
-Project Setup:
+Project Initial Setup:
 
 - 1) Go into the terminal and cd into this project directory
 
@@ -47,3 +47,9 @@ Project Setup:
 
 - 7) close the server once you are done working
     - press ctrl+c to stop the server/program from running
+
+Running the project after initial setup:
+
+- Go into the Hotel-Web-Application directory
+- type "flask --app main run"
+- ctrl+c in the terminal when you are done with the program

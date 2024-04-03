@@ -37,7 +37,8 @@ Project Initial Setup:
     - for win users: venv\Scripts\activate
 
 - 5) install flask
-    - type "pip install Flask"
+    - type "pip install -r requirements.txt"
+        - basically, every dev creates a venv with the same parameters
 
 - 6) test that everything is working
     - you should see a file called main.py in the directory

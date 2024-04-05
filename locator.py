@@ -1,18 +1,26 @@
 import googlemaps
 import pandas as pd
-import time
-# atm very basic, just asks for an input for starting location and end location
+import geocoder
+
 # Read API key from txt
 API = open("Google_Maps_API_Key.txt", "r")
 APIKey = API.read()
 
 maps = googlemaps.Client(key = APIKey)
 
+def get_current_location():
+    g = geocoder.ip('me') #finds cur location
+    g = g.latlng
+    if g is None:
+        raise Exception("Coordinates cannot be found")
+    return g
+
 def miles_to_meters(miles:float):
     return miles*1_609.344
 
 #finding cur location and end location
-loc = (37.3507608,-122.0264249) # TODO: figure out how to find current location
+lat, lon = get_current_location()
+loc = (lat,lon)
 max_distance = miles_to_meters(15)
 
 response = maps.places_nearby(
@@ -20,7 +28,7 @@ response = maps.places_nearby(
     keyword='hotel',
     radius=max_distance,
 )
-print(response.keys())
+
 hotel_list = response.get('results') #where we will store all our found hotels
 
 df = pd.DataFrame(hotel_list)

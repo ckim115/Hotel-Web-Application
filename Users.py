@@ -9,5 +9,12 @@ class Users():
         print("Name: ", self.__firstname, self.__lastname)
         print("Email: ", self.__email)
 
-user1 = Users("Bob", "Smith", "Bob@gmail.com", "password123")
-user1.printInfo()
+    def login(self, email, password):
+        if self.__email == email and self.__password == password:
+            return True
+        elif self.__email != email:
+            return "Wrong email"
+        elif self.__password != password:
+            return "Wrong password"
+        else:
+            return "Both email and password are incorrect"

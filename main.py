@@ -1,11 +1,12 @@
 from flask import Flask, render_template, request # import flask class methods
-from Users import * # import User class
-from Hotels import * # import Hotel class
+from Users import Users # import User class
+from Hotels import Hotels # import Hotel class
 
 app = Flask(__name__)
 
-# functions used to direct webpages
+# put regular functions definitions before routing functions
 
+# functions used to direct webpages
 @app.route('/')
 @app.route('/login')
 def hello_world():

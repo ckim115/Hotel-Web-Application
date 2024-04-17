@@ -12,16 +12,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="hotel_details.css">
     <title>Hotel Details</title>
 </head>
 <body>
     <table style="width:100%">
-        <th>
-            <td>Hotel</td>
-            <td>Address</td>
-            <td>Average Cost</td>
-            <td>Rating</td>
-        </th>
+        <tr>
+            <th>Hotel</th>
+            <th>Address</th>
+            <th>Average Cost</th>
+            <th>Rating</th>
+        </tr>
         {%for i in range(0, len)%}
         <tr>
             <td>{{hotels[i].getName()}}</td>

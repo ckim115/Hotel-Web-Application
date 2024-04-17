@@ -41,12 +41,12 @@ def index_page():
 # send data to page
 # def updated_index_page():
 
-@app.route('/HotelInfo', methods=['POST', 'GET'])
+@app.route('/hotel_details', methods=['POST', 'GET'])
 def hotel_info_page():
-    return render_template('hotel_details.html', hotels = readCSV(), form=request.form)
+    hotelList = readCSV()
+    return render_template('hotel_details.html', hotels=hotelList, len = len(hotelList), form=request.form)
 
 # start of regular functions
 
 if __name__ == '__main__':
-    readCSV()
     app.run(host='0.0.0.0', port=8000)

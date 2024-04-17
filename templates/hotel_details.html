@@ -12,9 +12,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="hotel_details.css">
+    <link rel="stylesheet" type="text/css" href="hotel_details.css">
     <title>Hotel Details</title>
 </head>
+
+<style type="text/css">
+    td{
+        text-align: center;
+        padding: 8px 8px;
+        border: 1px solid black;
+    }
+</style>
+
 <body>
     <table style="width:100%">
         <tr>
@@ -27,8 +36,8 @@
         <tr>
             <td>{{hotels[i].getName()}}</td>
             <td>{{hotels[i].getAddress()}}</td>
-            <td>{{hotels[i].getAvgCost()}}</td>
-            <td>{{hotels[i].getReviews()}}</td>
+            <td>${{hotels[i].getAvgCost()}}</td>
+            <td>{{hotels[i].getRatings()}}/5</td>
         </tr>
         {%endfor%}
     </table>

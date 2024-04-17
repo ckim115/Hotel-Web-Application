@@ -1,13 +1,13 @@
 import csv
 
 class Hotels():
-    def __init__(self, name, address, description, avgRoomCost, hotelLink, reviews):
+    def __init__(self, name, address, description, avgRoomCost, hotelLink, ratings):
         self.name = name
         self.address = address
         self.description = description
         self.avgRoomCost = avgRoomCost
         self.hotelLink = hotelLink
-        self.reviews = reviews
+        self.ratings = ratings
 
     def printHotelInfo(self):
         print("Name:", self.name)
@@ -15,7 +15,7 @@ class Hotels():
         print("Description:", self.description)
         print("Average cost per room: $", self.avgRoomCost)
         print("Link to the hotels website:", self.hotelLink)
-        print("This hotel has a review rating of:", self.reviews, "/5")
+        print("This hotel has a review rating of:", self.ratings, "/5")
 
     def getName(self):
         return self.name
@@ -32,8 +32,8 @@ class Hotels():
     def getHotelLink(self):
         return self.hotelLink
 
-    def getReviews(self):
-        return self.reviews
+    def getRatings(self):
+        return self.ratings
 
 #hotel1 = Hotels("Hotel De Anza", "Cupertino", "Great hotel of De Anza", 120, "www.DeAnzaHotel.com", 4.1)
 #hotel1.printHotelInfo()

@@ -22,6 +22,7 @@ def readCSV():
     for hotel in hotelList:
         hotel.printHotelInfo()
         print() # spacer in between hotel prints
+    return hotelList
 
 # functions used to direct webpages
 @app.route('/')
@@ -42,9 +43,10 @@ def index_page():
 
 @app.route('/HotelInfo', methods=['POST', 'GET'])
 def hotel_info_page():
-    return render_template('hotel_details.html', form=request.form)
+    return render_template('hotel_details.html', hotels = readCSV(), form=request.form)
 
 # start of regular functions
 
 if __name__ == '__main__':
+    readCSV()
     app.run(host='0.0.0.0', port=8000)

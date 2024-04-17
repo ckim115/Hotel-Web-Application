@@ -13,6 +13,17 @@
     <title>Hotel Details</title>
 </head>
 <body>
-    
+    <table style="width:100%">
+        <th>Hotel</th>
+        <th>Address</th>
+        <th>Average Cost</th>
+        <th>Rating</th>
+        {%for i in range(0, len(hotels))%}
+        <tr>{{hotels[i].getName()}}</tr>
+        <tr>{{hotels[i].getAddress()}}</tr>
+        <tr>{{hotels[i].getAvgCost()}}</tr>
+        <tr>{{hotels[i].getReviews()}}</tr>
+        {%endfor%}
+    </table>
 </body>
 </html>

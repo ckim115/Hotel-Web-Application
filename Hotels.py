@@ -13,7 +13,7 @@ class Hotels():
         print("Name:", self.name)
         print("Address:", self.address)
         print("Description:", self.description)
-        print("Average cost per room: $", self.avgRoomCost)
+        print("Average cost per room: ", self.avgRoomCost)
         print("Link to the hotels website:", self.hotelLink)
         print("This hotel has a review rating of:", self.ratings, "/5")
 

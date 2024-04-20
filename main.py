@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request # import flask class methods
 from Users import * # import User class
+from hotel_additional_info import * # import hotel_additional_info class
 from Hotels import * # import Hotel class
 
 app = Flask(__name__)
@@ -14,8 +15,10 @@ def readCSV():
             if lines[5] == "name": # ignore csv file format / basically checking if name of hotel is name
                 continue
             else:
-                tempHotel = "hotel"+str(i)
-                tempHotel = Hotels(lines[5], lines[15], "Great hotel", 408+i, "www."+lines[5]+".com", lines[10])
+                id = findLocationID(lines[5]) # find the hotel tripadvisor id
+                addInfo = findAdditionalInfo(id) # find the hotel price[0] and url[1]
+                # reviews = findRatings(id) # find list of 5 reviews *CURRENTLY UNUSED!
+                tempHotel = Hotels(lines[5], lines[15], "Great hotel", addInfo[0], addInfo[1], lines[10])
                 hotelList.append(tempHotel)
                 i += 1
     #print(hotelList) prints all hotel objects

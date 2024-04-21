@@ -1,0 +1,49 @@
+<!--
+    For when a user wants to see details about a hotel
+    - name of hotel
+    - address
+    - general description
+    - average cost per room
+    - link directing to hotel's official site
+    - reviews of the hotel
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="hotel_details.css">
+    <title>Specific Hotel Details</title>
+</head>
+
+<style type="text/css">
+    td{
+        text-align: center;
+        padding: 8px 8px;
+        border: 1px solid black;
+    }
+</style>
+
+<body>
+    <table style="width:100%">
+        <tr>
+            <th>Hotel</th>
+            <th>Address</th>
+            <th>Average Cost</th>
+            <th>Rating</th>
+        </tr>
+        <tr>
+            <td>{{specificHotel[2].getName()}}</td>
+            <td>{{specificHotel[2].getAddress()}}</td>
+            <td>${{specificHotel[2].getAvgCost()}}</td>
+            <td>{{specificHotel[2].getRatings()}}/5</td>
+            <td>Extra info 1</td>
+            <td>Extra info 2</td>
+        </tr>
+    </table>
+    <br>
+    <button onclick="window.location.href='/hotel_details'">Go back to hotel list</button>
+</body>
+<script>
+</script>
+</html>

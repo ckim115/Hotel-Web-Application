@@ -49,6 +49,11 @@ def hotel_info_page():
     hotelList = readCSV()
     return render_template('hotel_details.html', hotels=hotelList, len = len(hotelList), form=request.form)
 
+@app.route('/specific_hotel_details', methods=['POST', 'GET'])
+def specific_info_page():
+    hotelList = readCSV()
+    return render_template('specific_hotel_details.html', specificHotel=hotelList)
+
 # start of regular functions
 
 if __name__ == '__main__':

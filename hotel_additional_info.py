@@ -28,10 +28,10 @@ def findAdditionalInfo(hID):
             hURL = res_json.get('web_url')
         hPrice = res_json.get('price_level')
         if hPrice == None:
-            hPrice = res_json.get('unknown')
+            hPrice = '$$$'
         return [hPrice, hURL]
     else:
-        return ['unknown', 'unknown']
+        return ['$$$', 'unknown']
 
 #returns a list of reviews
 # If id is None, returns ['unknown']

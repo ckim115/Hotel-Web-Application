@@ -16,6 +16,7 @@
 </style>
 
 <body>
+    <h3>Here are your saved hotels</h3>
     <table style="width:100%">
         <tr>
             <th>Hotel</th>
@@ -24,9 +25,14 @@
             <th>Rating</th>
         </tr>
         <tr>
-            <td><button href="">Delete from your list</button></td> <!--send user to specific hotel page w/ table data. still implementing-->
+            <td>name</td>
+            <td>addy</td>
+            <td>cost</td>
+            <td>rate</td>
+            <td><button href="#">Delete from your list</button></td> <!--send user to specific hotel page w/ table data. still implementing-->
         </tr>
     </table>
+    <br>
     <a href="{{ url_for('index_page') }}"><button>Go back to main page</button></a>
 </body>
 </html>

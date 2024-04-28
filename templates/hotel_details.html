@@ -31,6 +31,7 @@
             <th>Address</th>
             <th>Average Cost</th>
             <th>Rating</th>
+            <th>Official Website</th>
         </tr>
         {%for i in range(0, len)%}
         <tr>
@@ -39,7 +40,7 @@
             <td>${{hotels[i].getAvgCost()}}</td>
             <td>{{hotels[i].getRatings()}}/5</td>
             <td><a href={{hotels[i].getHotelLink()}}>{{hotels[i].getHotelLink()[:20]}}...</a></td>
-            <td><button href="">View more details</button></td> <!--send user to specific hotel page w/ table data. still implementing-->
+            <td><a href="#"></a><button href="">Add to your bookmarks</button></a></td> <!--send user to specific hotel page w/ table data. still implementing-->
         </tr>
         {%endfor%}
     </table>

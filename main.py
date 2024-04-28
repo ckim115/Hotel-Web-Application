@@ -30,11 +30,10 @@ def readCSV():
                 hotelList.append(tempHotel)
                 i += 1
     #print(hotelList) prints all hotel objects
-    for hotel in hotelList:
-        hotel.printHotelInfo()
-        print() # spacer in between hotel prints
+    # for hotel in hotelList:
+    #     hotel.printHotelInfo()
+    #     print() # spacer in between hotel prints
     return hotelList
-
 
 '''
 TEMPLATE FUNCTIONS BELOW
@@ -91,7 +90,8 @@ def login():
 # Index Page
 @app.route('/index/', methods=['POST', 'GET'])
 def index_page():
-    return render_template('index.html')
+    user = session['user']
+    return render_template('index.html', user=user)
 
 # take in user selected location and send in updated index info with hotels in area
 # display hotels in area
@@ -114,8 +114,7 @@ def specific_info_page():
 @app.route('/userSavedHotels/', methods=['POST', 'GET'])
 def userSavedHotels():
     # query user hotels
-    #c.execute("SELECT  FROM users U AND hotels H WHERE U.users = H.users")
-    hotels = ['a', 'b', 'c', 'd', 'e']
+    #c.execute("SELECT H.name,  FROM users U, hotels H WHERE U.users = H.users")
     return render_template('userSavedHotels.html')
 
 @app.route('/logout/')

@@ -8,10 +8,13 @@
 <body>
     <h1>Welcome {{user}}</h1>
     
-    <form action="/hotel_details" method="post"> <!--Let the user search for a hotel and send them to an updated index with the hotels in their area-->
+    <form action="{{ url_for('hotel_info_page') }}" method="post"> <!--Let the user search for a hotel and send them to an updated index with the hotels in their area-->
         <input type="submit" name="getHotels" value="Get Hotels">
     </form>
     <br>
-    <a href="/"><button>Logout</button></a>
+    <a href="{{ url_for('userSavedHotels') }}"><button>View your saved hotels</button></a>
+    <br>
+    <br>
+    <a href="{{ url_for('logout') }}"><button>Logout</button></a>
 </body>
 </html>

@@ -1,13 +1,13 @@
 class Users():
     def __init__(self, email, password):
-        self.email = email
+        self.username = username
         self.password = password
 
     def getEmail(self):
-        return self.email
+        return self.username
 
-    def setEmail(self, newEmail):
-        self.email = newEmail
+    def setEmail(self, newUsername):
+        self.username = newUsername
 
     def setPassword(self, newPassword):
         self.password = password

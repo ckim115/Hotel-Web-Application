@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="hotel_details.css">
+    <title>Bookmarked hotels</title>
+</head>
+
+<style type="text/css">
+    td{
+        text-align: center;
+        padding: 8px 8px;
+        border: 1px solid black;
+    }
+</style>
+
+<body>
+    <h3>Here are your saved hotels</h3>
+    <table style="width:100%">
+        <tr>
+            <th>Hotel</th>
+            <th>Address</th>
+            <th>Average Cost</th>
+            <th>Rating</th>
+        </tr>
+        <tr>
+            <td>name</td>
+            <td>addy</td>
+            <td>cost</td>
+            <td>rate</td>
+            <td><button href="#">Delete from your list</button></td> <!--send user to specific hotel page w/ table data. still implementing-->
+        </tr>
+    </table>
+    <br>
+    <a href="{{ url_for('index_page') }}"><button>Go back to main page</button></a>
+</body>
+</html>

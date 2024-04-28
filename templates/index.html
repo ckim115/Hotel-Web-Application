@@ -6,10 +6,12 @@
     <title>Hotel Web App</title>
 </head>
 <body>
-    <h1>Welcome {{form.emailLogin}}</h1>
+    <h1>Welcome {{user}}</h1>
     
     <form action="/hotel_details" method="post"> <!--Let the user search for a hotel and send them to an updated index with the hotels in their area-->
         <input type="submit" name="getHotels" value="Get Hotels">
     </form>
+    <br>
+    <a href="/"><button>Logout</button></a>
 </body>
 </html>

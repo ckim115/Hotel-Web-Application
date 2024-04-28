@@ -6,16 +6,17 @@
     <title>Login/Signup</title>
 </head>
 <body>
-    <h1>Login</h1>
-    <form action="/index" method="post">
+    <h1>{{errorMsg}}</h1>
+    <h3>Login</h3>
+    <form action="{{ url_for('login') }}" method="post" enctype="multipart/form-data">
         <input type="text" name="emailLogin" id="emailLogin" placeholder="Enter your email">
         <br><br>
         <input type="password" name="pwLogin" id="pwLogin" placeholder="Enter your password">
         <br><br>
         <input type="submit" name="loginBut" value="Login">
     </form>
-    <h1>Signup</h1>
-    <form action="/index" method="post">
+    <h3>Signup</h3>
+    <form action="{{ url_for('login') }}" method="post" enctype="multipart/form-data">
         <input type="text" name="emailSignup" id="emailSignup" placeholder="Enter your email">
         <br><br>
         <input type="password" name="pwSignup" id="pwSignup" placeholder="Enter a password">

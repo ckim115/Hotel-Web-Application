@@ -9,13 +9,14 @@ c = conn.cursor()
 
 app = Flask(__name__)
 
+hotelList = list()
 
 '''
 REGULAR FUNCITONS BELOW
 '''
 # put regular functions definitions before routing functions
 def readCSV():
-    hotelList = list()
+    global hotelList
     with open('list_of_nearby_hotels.csv', mode='r') as file:
         csvFile = csv.reader(file)
         i = 0
@@ -34,6 +35,8 @@ def readCSV():
     #     hotel.printHotelInfo()
     #     print() # spacer in between hotel prints
     return hotelList
+
+hotelList = readCSV()
 
 '''
 TEMPLATE FUNCTIONS BELOW
@@ -90,7 +93,9 @@ def login():
 # Index Page
 @app.route('/index/', methods=['POST', 'GET'])
 def index_page():
-    user = session['user']
+    user = session['user'] # if session doesnt exist
+    if user == None:
+        return url_for('/logout')
     return render_template('index.html', user=user)
 
 # take in user selected location and send in updated index info with hotels in area
@@ -100,22 +105,57 @@ def index_page():
 # send data to page
 # def updated_index_page():
 # hotel details page/Once button on index is pressed
-@app.route('/hotel_details/', methods=['POST', 'GET'])
+@app.route('/hotel_details', methods=['POST', 'GET'])
 def hotel_info_page():
-    hotelList = readCSV()
+    user = session['user'] # if session doesnt exist
+    if user == None:
+        return url_for('/logout')
+    global hotelList
     return render_template('hotel_details.html', hotels=hotelList, len = len(hotelList))
 
-# might delete this
-@app.route('/specific_hotel_details/', methods=['POST', 'GET'])
-def specific_info_page():
-    hotelList = readCSV()
-    return render_template('specific_hotel_details.html', specificHotel=hotelList)
+@app.route('/hotel_details/<hotel>/<address>/<cost>/<rating>/', methods=['POST', 'GET'])
+def bookmark(hotel, address, cost, rating):
+    user = session['user'] # if session doesnt exist
+    if user == None:
+        return url_for('/logout')
+    print("sent data:", hotel, address, cost, rating)
+    global hotelList
+    if hotel == 'hotel_details.css' or address == 'hotel_details.css' or cost == 'hotel_details.css' or rating == 'hotel_details.css': # if hotel_details crept into function
+        return render_template('hotel_details.html', hotels=hotelList, len = len(hotelList))
+    print("current user:", session['user'])
+    username = session['user']
+    # check db: if hotel is already in db
+    c.execute("SELECT * FROM hotels WHERE name=?", (hotel,))
+    temp = c.fetchall()
+    print(temp)
+    if temp == []: # if hotel is not in db, add to db
+        c.execute("INSERT INTO hotels VALUES(?, ?, ?, ?, ?)", (username, hotel, address, cost, rating,))
+    return render_template('hotel_details.html', hotels=hotelList, len = len(hotelList))
 
 @app.route('/userSavedHotels/', methods=['POST', 'GET'])
 def userSavedHotels():
-    # query user hotels
-    #c.execute("SELECT H.name,  FROM users U, hotels H WHERE U.users = H.users")
-    return render_template('userSavedHotels.html')
+    user = session['user'] # if session doesnt exist
+    if user == None:
+        return url_for('/logout')
+    c.execute("SELECT H.name, H.address, H.cost, H.rating FROM users U, hotels H WHERE U.username = H.username")
+    userHotels = c.fetchall()
+    print(userHotels)
+    return render_template('userSavedHotels.html', hotels = userHotels)
+
+@app.route('/userSavedHotels/<hotel>/', methods=['POST', 'GET'])
+def userSavedHotels_Delete(hotel):
+    user = session['user'] # if session doesnt exist
+    if user == None:
+        return url_for('/logout')
+    if hotel == "hotel":
+        userHotels = c.fetchall()
+        print(userHotels)
+        return render_template('userSavedHotels.html', hotels = userHotels)
+    c.execute("DELETE FROM hotels WHERE name=? AND username=?", (hotel, user,)) # delete hotel
+    c.execute("SELECT H.name, H.address, H.cost, H.rating FROM users U, hotels H WHERE U.username = H.username") # query user hotels again
+    userHotels = c.fetchall() # fetch hotels
+    print(userHotels)
+    return render_template('userSavedHotels.html', hotels = userHotels) # reload bookmark page
 
 @app.route('/logout/')
 def logout():

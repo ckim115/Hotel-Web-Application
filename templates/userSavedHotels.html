@@ -24,13 +24,20 @@
             <th>Average Cost</th>
             <th>Rating</th>
         </tr>
+        <!--
+            add if statements
+            if hotel list == 0, print("go bookmark some hotels")
+            else, display hotels that are bookmarked
+        -->
+        {% for hotel in hotels %}
         <tr>
-            <td>name</td>
-            <td>addy</td>
-            <td>cost</td>
-            <td>rate</td>
-            <td><button href="#">Delete from your list</button></td> <!--send user to specific hotel page w/ table data. still implementing-->
+            <td>{{hotel[0]}}</td>
+            <td>{{hotel[1]}}</td>
+            <td>{{hotel[2]}}</td>
+            <td>{{hotel[3]}}/5</td>
+            <td><a href="/userSavedHotels/{{hotel[0]}}"><button>Delete from Bookmarks</button></a></td>
         </tr>
+        {% endfor %}
     </table>
     <br>
     <a href="{{ url_for('index_page') }}"><button>Go back to main page</button></a>

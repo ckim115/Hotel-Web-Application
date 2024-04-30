@@ -13,14 +13,17 @@ To run the code:
 3. Follow the link to the web application, and choose to sign up if you do not have an account, or login if you do
 4. To get a list of nearby hotels, click the ‘Get Hotels’ button. To see all saved hotels, click ‘View your saved hotels’ instead
 5. Use the ‘Go back to main page’ button to return to the main page/
-<img width="1278" alt="Screenshot 2024-04-30 at 4 03 13 PM" src="https://github.com/ckim115/Hotel-Web-Application/assets/103068832/ab62bcfe-fd56-48cf-aa6e-ed2d9093045d">
-Login Page/
 
-<img width="1280" alt="Screenshot 2024-04-30 at 4 03 48 PM" src="https://github.com/ckim115/Hotel-Web-Application/assets/103068832/28f1a9aa-d230-4665-b860-3c35533b3ca2">
-Main Menu/
+<img width="202" alt="Screenshot 2024-04-30 at 4 05 38 PM" src="https://github.com/ckim115/Hotel-Web-Application/assets/103068832/28e66973-cee2-4284-8c70-f86c6b57285c">
+Login Page
+
+<img width="262" alt="Screenshot 2024-04-30 at 4 06 07 PM" src="https://github.com/ckim115/Hotel-Web-Application/assets/103068832/74514687-e9da-4b09-89fc-ef55d7c84ec8">
+Main Menu
+
 
 <img width="1280" alt="Screenshot 2024-04-30 at 4 04 14 PM" src="https://github.com/ckim115/Hotel-Web-Application/assets/103068832/cb191b91-24e5-4a55-b943-aa85c4eedad4">
 Hotel List
+
 
 <img width="1280" alt="Screenshot 2024-04-30 at 4 04 48 PM" src="https://github.com/ckim115/Hotel-Web-Application/assets/103068832/079f5bd9-6845-4f45-8821-138d5e511a41">
 Bookmarked Hotels Example

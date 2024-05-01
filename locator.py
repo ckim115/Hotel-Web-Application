@@ -11,7 +11,8 @@ APIKey = API.read()
 maps = googlemaps.Client(key = APIKey)
 
 def get_current_location():
-    g = geocoder.ip('me') #finds cur location
+    g = geocoder.ip('me') # Finds current location
+    # Gets the lat and long
     g = g.latlng
     if g is None:
         raise Exception("Coordinates cannot be found")
@@ -20,18 +21,19 @@ def get_current_location():
 def miles_to_meters(miles:float):
     return miles*1_609.344
 
-#finding cur location and end location
+# Finds current location using lat and long
 lat, lon = get_current_location()
 loc = (lat,lon)
 max_distance = miles_to_meters(15)
 
+# Google Places API request using parameters location, keyword, and max distance
 response = maps.places_nearby(
     location=loc,
     keyword='hotel',
     radius=max_distance,
 )
 
-hotel_list = response.get('results') #where we will store all our found hotels
+hotel_list = response.get('results') # Where we will store all our found hotels
 
 df = pd.DataFrame(hotel_list)
 df.to_csv('list_of_nearby_hotels.csv', index=False)

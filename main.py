@@ -3,6 +3,7 @@ from Users import * # import User class
 from hotel_additional_info import * # import hotel_additional_info class
 from Hotels import * # import Hotel class
 import sqlite3
+import re
 
 conn = sqlite3.connect('hotel.db', check_same_thread=False) # establish db connection
 c = conn.cursor() # db pointer
@@ -48,6 +49,8 @@ app.secret_key = b'thisKeyIsSecret123' # session key
 @app.route('/')
 @app.route('/login', methods=['POST', 'GET'])
 def login():
+    patternUser = r'^[a-zA-Z0-9]{4,16}$' # only chars and numbers/length 4-16
+    patternPW = r'^[a-zA-Z0-9]{8,32}$'
     errorMsg = '' # text to be dispalyed on login template if there is any
     if request.method == 'POST' and 'emailLogin' in request.form and 'pwLogin' in request.form: # check if user pressed submit on LOGIN area
         user = request.form['emailLogin']
@@ -60,9 +63,15 @@ def login():
         password: check if chars are valid (chars/num/symbols), check length of password
         '''
         # scan username with string methods/regex
-
+        if re.search(patternUser, user):
+            print("Valid username")
+        else:
+            return render_template('login.html', errorMsg = 'Failed login')
         # scan password with string methods/regex
-
+        if re.search(patternPW, password):
+            print("Valid username")
+        else:
+            print("Invalid username")
         c.execute("SELECT * FROM users WHERE username=? AND password=?", (user, password,)) # check db: if a user exists with the username and if pw is valid for account
         temp = c.fetchall() # gather query results
         print(temp)
@@ -88,9 +97,15 @@ def login():
         password: check if chars are valid (chars/num/symbols), check length of password
         '''
         # scan username with string methods/regex
-
+        if re.search(patternUser, user):
+            print("Valid username")
+        else:
+            return render_template('login.html', errorMsg = 'Failed login: Invalid username. Please only use chars/nums')
         # scan password with string methods/regex
-
+        if re.search(patternPW, password):
+            print("Valid username")
+        else:
+            print("Invalid username") # change this to render template taht pw is invalid
         c.execute("SELECT * FROM users WHERE username=?", (user,)) # check db: if username is available
         temp = c.fetchall() # gather query results
         print(temp)

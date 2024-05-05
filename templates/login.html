@@ -9,7 +9,7 @@
     <h1>{{errorMsg}}</h1>
     <h3>Login</h3>
     <form action="{{ url_for('login') }}" method="post" enctype="multipart/form-data">
-        <input type="text" name="emailLogin" id="emailLogin" placeholder="Enter your email">
+        <input type="text" name="emailLogin" id="emailLogin" placeholder="Enter your username">
         <br><br>
         <input type="password" name="pwLogin" id="pwLogin" placeholder="Enter your password">
         <br><br>
@@ -17,7 +17,7 @@
     </form>
     <h3>Signup</h3>
     <form action="{{ url_for('login') }}" method="post" enctype="multipart/form-data">
-        <input type="text" name="emailSignup" id="emailSignup" placeholder="Enter your email">
+        <input type="text" name="emailSignup" id="emailSignup" placeholder="Enter your username">
         <br><br>
         <input type="password" name="pwSignup" id="pwSignup" placeholder="Enter a password">
         <br><br>

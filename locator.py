@@ -1,13 +1,13 @@
 import googlemaps
 import pandas as pd
 import geocoder
+import json
 
 # Use Google Maps API to locate hotels and save their information
-
 # Read API key from txt
+print("Running locator...")
 API = open("Google_Maps_API_Key.txt", "r")
 APIKey = API.read()
-
 maps = googlemaps.Client(key = APIKey)
 
 def get_current_location():
@@ -34,6 +34,10 @@ response = maps.places_nearby(
 )
 
 hotel_list = response.get('results') # Where we will store all our found hotels
+print(hotel_list)
+
 
 df = pd.DataFrame(hotel_list)
+# Put information of hotels into csv
 df.to_csv('list_of_nearby_hotels.csv', index=False)
+print("Finished getting list of hotels.")

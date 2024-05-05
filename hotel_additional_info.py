@@ -1,5 +1,4 @@
 import json
-
 from tripadvisorapi.api import TripadvisorApi
 from Ratings import *
 

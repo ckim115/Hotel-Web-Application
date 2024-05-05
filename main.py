@@ -2,8 +2,10 @@ from flask import Flask, render_template, request, session, redirect, url_for # 
 from Users import * # import User class
 from hotel_additional_info import * # import hotel_additional_info class
 from Hotels import * # import Hotel class
+import locator
 import sqlite3
 import re
+import pandas as pd
 
 conn = sqlite3.connect('hotel.db', check_same_thread=False) # establish db connection
 c = conn.cursor() # db pointer
@@ -19,22 +21,19 @@ REGULAR FUNCITONS BELOW
 def readCSV():
     global hotelList
     with open('list_of_nearby_hotels.csv', mode='r') as file:
-        csvFile = csv.reader(file)
-        i = 0
-        for lines in csvFile:
-            if lines[5] == 'name': # ignore csv file format / basically checking if name of hotel is name
-                continue
-            else:
-                id = findLocationID(lines[5]) # find the hotel tripadvisor id
-                addInfo = findAdditionalInfo(id) # find the hotel price[0] and url[1]
-                # reviews = findRatings(id) # find list of 5 reviews *CURRENTLY UNUSED!
-                tempHotel = Hotels(lines[5], lines[15], 'Great hotel', addInfo[0], addInfo[1], lines[10])
-                hotelList.append(tempHotel)
-                i += 1
-    #print(hotelList) prints all hotel objects
-    # for hotel in hotelList:
-    #     hotel.printHotelInfo()
-    #     print() # spacer in between hotel prints
+        df = pd.read_csv(file)
+        for i in range(len(df.index)):
+            name = df['name'][i]
+            address = df['vicinity'][i]
+            rating = df['rating'][i]
+            id = findLocationID(name) # find the hotel tripadvisor id
+            addInfo = findAdditionalInfo(id)  # find the hotel price[0] and url[1]
+            tempHotel = Hotels(name, address, 'Great hotel', addInfo[0], addInfo[1], rating)
+            hotelList.append(tempHotel)
+    print(hotelList) # prints all hotel objects
+    for hotel in hotelList:
+        hotel.printHotelInfo()
+        print() # spacer in between hotel prints
     return hotelList
 
 hotelList = readCSV()

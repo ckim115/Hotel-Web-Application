@@ -30,10 +30,10 @@ def readCSV():
             addInfo = findAdditionalInfo(id)  # find the hotel price[0] and url[1]
             tempHotel = Hotels(name, address, 'Great hotel', addInfo[0], addInfo[1], rating)
             hotelList.append(tempHotel)
-    print(hotelList) # prints all hotel objects
-    for hotel in hotelList:
-        hotel.printHotelInfo()
-        print() # spacer in between hotel prints
+    # print(hotelList) # prints all hotel objects
+    # for hotel in hotelList:
+    #     hotel.printHotelInfo()
+    #     print() # spacer in between hotel prints
     return hotelList
 
 hotelList = readCSV()
@@ -49,28 +49,13 @@ app.secret_key = b'thisKeyIsSecret123' # session key
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     patternUser = r'^[a-zA-Z0-9]{4,16}$' # only chars and numbers/length 4-16
-    patternPW = r'^[a-zA-Z0-9]{8,32}$'
     errorMsg = '' # text to be dispalyed on login template if there is any
     if request.method == 'POST' and 'emailLogin' in request.form and 'pwLogin' in request.form: # check if user pressed submit on LOGIN area
         user = request.form['emailLogin']
         password = request.form['pwLogin']
         if user == '' or password == '': # if user or pw fields are empty, redirect back to login
             return render_template('login.html', errorMsg = 'Failed login: Please fill in all fields for login')
-        '''
-        CLEAN USER INPUT: WIP
-        username: check if characters are valid (only chars/nums)
-        password: check if chars are valid (chars/num/symbols), check length of password
-        '''
-        # scan username with string methods/regex
-        if re.search(patternUser, user):
-            print("Valid username")
-        else:
-            return render_template('login.html', errorMsg = 'Failed login')
-        # scan password with string methods/regex
-        if re.search(patternPW, password):
-            print("Valid username")
-        else:
-            print("Invalid username")
+
         c.execute("SELECT * FROM users WHERE username=? AND password=?", (user, password,)) # check db: if a user exists with the username and if pw is valid for account
         temp = c.fetchall() # gather query results
         print(temp)
@@ -90,21 +75,13 @@ def login():
             return render_template('login.html', errorMsg = 'Failed signup: Please fill in all fields for signup')
         if password != confPW: # check if password and confirm password match
             return render_template('login.html', errorMsg = 'Failed signup: Passwords do not match')
-        '''
-        CLEAN USER INPUT: WIP
-        username: check if characters are valid (only chars/nums)
-        password: check if chars are valid (chars/num/symbols), check length of password
-        '''
+
         # scan username with string methods/regex
         if re.search(patternUser, user):
             print("Valid username")
         else:
             return render_template('login.html', errorMsg = 'Failed login: Invalid username. Please only use chars/nums')
-        # scan password with string methods/regex
-        if re.search(patternPW, password):
-            print("Valid username")
-        else:
-            print("Invalid username") # change this to render template taht pw is invalid
+
         c.execute("SELECT * FROM users WHERE username=?", (user,)) # check db: if username is available
         temp = c.fetchall() # gather query results
         print(temp)

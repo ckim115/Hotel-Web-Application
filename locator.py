@@ -34,7 +34,7 @@ response = maps.places_nearby(
 )
 
 hotel_list = response.get('results') # Where we will store all our found hotels
-print(hotel_list)
+# print(hotel_list)
 
 
 df = pd.DataFrame(hotel_list)
